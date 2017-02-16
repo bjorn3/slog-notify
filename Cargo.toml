@@ -1,0 +1,10 @@
+[package]
+name = "slog-notify"
+version = "0.1.0"
+authors = ["bjorn3 <bjorn3@users.noreply.github.com>"]
+
+[dependencies]
+slog = "1.5"
+slog-term = "1.5"
+
+notify-rust = "3.2"
