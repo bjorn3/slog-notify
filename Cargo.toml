@@ -2,6 +2,7 @@
 name = "slog-notify"
 version = "0.1.0"
 authors = ["bjorn3 <bjorn3@users.noreply.github.com>"]
+description = "Slog drain for desktop notifications"
 keywords = ["slog", "notify"]
 license = "MIT or Apache-2.0"
 readme = "README.md"
