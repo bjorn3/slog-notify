@@ -2,6 +2,10 @@
 name = "slog-notify"
 version = "0.1.0"
 authors = ["bjorn3 <bjorn3@users.noreply.github.com>"]
+keywords = ["slog", "notify"]
+license = "MIT or Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/bjorn3/slog-notify"
 
 [dependencies]
 slog = "1.5"
