@@ -12,21 +12,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.*/
 
-#[macro_use]
 extern crate slog;
 extern crate notify_rust;
 
 use notify_rust::Notification;
 use notify_rust::hints::NotificationHint;
 
-struct NotifyDrain{
+pub struct Notify{
     name: &'static str
 }
 
-impl slog::Drain for NotifyDrain{
-    type Error = String;
+impl slog::Drain for Notify{
+    type Err = String;
+    type Ok = ();
     
-    fn log(&self, info: &slog::Record, _: &slog::OwnedKeyValueList) -> Result<(), Self::Error>{
+    fn log(&self, info: &slog::Record, _: &slog::OwnedKVList) -> Result<Self::Ok, Self::Err>{
         let summary = format!("{:?} {}@{}:{}", info.level(), info.file(), info.line(), info.column());
         let body = format!("{}", info.msg());
         
@@ -47,8 +47,8 @@ impl slog::Drain for NotifyDrain{
     }
 }
 
-pub fn simple(name: &'static str) -> Box<slog::Drain<Error=String> + Send + Sync>{
-    Box::new(NotifyDrain{
+pub fn simple(name: &'static str) -> Notify {
+    Notify{
         name: name
-    })
+    }
 }

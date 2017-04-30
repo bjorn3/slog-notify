@@ -2,14 +2,18 @@
 extern crate slog;
 extern crate slog_term;
 extern crate slog_notify;
+extern crate slog_async;
 
 use std::process::Command;
 
-use slog::DrainExt;
+use slog::Drain;
 
 fn main(){
-    let drain = slog::Duplicate::new(slog_term::streamer().compact().build(), slog_notify::simple("Notify program end")).fuse();
-    
+    let decorator = slog_term::TermDecorator::new().build();
+    let drain = slog_term::CompactFormat::new(decorator).build();
+    let drain = slog::Duplicate::new(drain, slog_notify::simple("Notify program end")).fuse();
+    let drain = slog_async::Async::new(drain).build().fuse();
+
     let root_log = slog::Logger::root(drain, o!());
     
     let cmd = std::env::args().skip(1).collect::<Vec<_>>();

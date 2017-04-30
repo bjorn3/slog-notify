@@ -1,6 +1,6 @@
 [package]
 name = "slog-notify"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["bjorn3 <bjorn3@users.noreply.github.com>"]
 description = "Slog drain for desktop notifications"
 keywords = ["slog", "notify"]
@@ -9,7 +9,10 @@ readme = "README.md"
 repository = "https://github.com/bjorn3/slog-notify"
 
 [dependencies]
-slog = "1.5"
-slog-term = "1.5"
+slog = "2"
+slog-term = "2"
 
 notify-rust = "3.2"
+
+[dev-dependencies]
+slog-async = "2"
